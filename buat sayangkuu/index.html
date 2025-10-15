@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Wanita Yang Aku Sayang 💕</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Poppins:wght@400;600&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: linear-gradient(135deg, #ffd6e0, #fff0f7, #ffffff);
+  font-family: "Handlee", cursive;
+  color: #4a4a4a;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  animation: fadeInBody 2.5s ease-in forwards;
+}
+
+@keyframes fadeInBody {
+  from { opacity: 0; filter: blur(10px); }
+  to { opacity: 1; filter: blur(0); }
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-top: 40px;
+  background: linear-gradient(90deg, #ff4f8b, #ff9fcf, #ff4f8b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite linear;
+  background-size: 200%;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0%; }
+  100% { background-position: 200%; }
+}
+
+#content-wrapper {
+  flex: 1;
+  width: 100%;
+  max-width: 700px;
+  overflow-y: scroll;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* sembunyikan scrollbar tapi scroll tetap jalan */
+#content-wrapper::-webkit-scrollbar { width: 0px; background: transparent; }
+#content-wrapper { -ms-overflow-style: none; scrollbar-width: none; }
+
+#message {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  white-space: pre-line;
+  opacity: 0;
+  overflow-wrap: break-word;
+}
+
+footer {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.music-btn, .love-btn {
+  background: #ff85a1;
+  color: white;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  font-family: "Poppins", sans-serif;
+  z-index: 10;
+  margin: 10px;
+}
+
+.music-btn:hover, .love-btn:hover { background: #ff5c8d; transform: scale(1.05); }
+
+.heart, .star {
+  position: absolute;
+  opacity: 0.8;
+  animation: fall 8s linear infinite;
+  user-select: none;
+  pointer-events: none;
+}
+
+.heart { color: rgba(255, 100, 150, 0.7); }
+.star { color: rgba(255, 255, 255, 0.8); text-shadow: 0 0 10px white; }
+
+@keyframes fall {
+  0% { transform: translateY(-10vh) translateX(0); opacity: 1; }
+  100% { transform: translateY(110vh) translateX(20px); opacity: 0; }
+}
+
+.popup, .secret-popup {
+  position: fixed;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff0f5;
+  color: #ff4f8b;
+  border-radius: 20px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  font-size: 1.2rem;
+  font-family: "Handlee", cursive;
+  opacity: 0;
+  transition: all 1s ease;
+  z-index: 15;
+}
+
+.popup.show, .secret-popup.show { bottom: 160px; opacity: 1; }
+
+@keyframes bounce {
+  0% { transform: translateX(-50%) translateY(0); }
+  30% { transform: translateX(-50%) translateY(-20px); }
+  50% { transform: translateX(-50%) translateY(0); }
+  70% { transform: translateX(-50%) translateY(-10px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+.secret-popup.bounce { animation: bounce 0.6s ease; }
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+.love-btn.shake { animation: shake 0.5s ease-in-out; }
+
+@media (max-width: 600px) {
+  h1 { font-size: 2rem; }
+  #message { font-size: 1.05rem; }
+  .music-btn, .love-btn { padding: 10px 18px; font-size: 0.9rem; }
+}
+</style>
+</head>
+<body>
+<h1>Hai sayangku 💖</h1>
+
+<div id="content-wrapper">
+  <p id="message"></p>
+</div>
+
+<button class="music-btn" id="playMusic">🎵 Putar Musik</button>
+<button class="love-btn" id="kangenBtn">💌 Klik kalau kangen</button>
+
+<div class="popup" id="popup">💌 Sayang, kamu masih di situ? Aku sayang banget sama kamu 😚💖</div>
+<div class="secret-popup" id="secretPopup">Hehe kangen ya? Sini peluk dulu 🤭💞 aku juga kangen kok sayang~</div>
+
+<footer>
+<p>💞 Dari seseorang yang sok cool, tapi tiap liat senyuman kamu langsung salting sendiri 😳</p>
+</footer>
+
+<audio id="bgMusic" loop>
+  <source src="lagu.mp3" type="audio/mpeg">
+</audio>
+<audio id="popSound">
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_ae2e7b2e7e.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const text = `Aku cuma mau bilang sesuatu, tapi jangan senyum dulu ya, nanti aku ikut meleleh 😳  
+
+Kamu itu kayak kombinasi antara ketenangan dan kekacauan.  
+Bikin tenang kalau deket, tapi juga bikin kangen kalau jauh 💫  
+Kalau dunia ini ribet, cukup denger suaramu aja udah berasa kayak “oke, semua aman”.  
+
+Aku tuh bukan orang paling romantis, tapi tiap kali mikirin kamu, tiba-tiba bisa ngomong hal-hal manis.  
+Kayak… “aku gak butuh kopi buat melek, cukup liat kamu aja udah deg-degan” ☕❤️  
+
+Terima kasih ya sayang…  
+Udah sabar sama aku, yang kadang telat ngabarin, yang kadang ngelucu garing,  
+tapi tetep kamu bales dengan sabar (dan kadang ngedumel gemes 😆).  
+Terima kasih karena udah bikin hari-hariku gak pernah terasa sepi.  
+
+Kamu tuh alasan kenapa aku bisa senyum tanpa alasan.  
+Kadang cuma inget hal kecil aja dari kamu, kayak cara kamu ngomong,  
+cara kamu ketawa, atau bahkan cara kamu ngeluh — semuanya lucu di mataku.  
+
+Dan tau gak? Setiap kali aku ngetik “sayang”, rasanya kayak nulis nama paling indah di dunia.  
+Kamu itu versi terbaik dari semesta kecil yang aku punya.  
+
+Kalau kamu tanya, “seberapa sayang sih kamu sama aku?”  
+Jawabannya: lebih dari cukup buat aku rela rebut sinyal cuma biar bisa video call sama kamu 😅📱  
+Dan kalau suatu hari kamu ngerasa gak dihargai, inget ya…  
+ada aku yang setiap hari bersyukur karena punya kamu.  
+
+Sayang, kalau kamu lagi capek, peluk aja kata-kata ini ya 🤗  
+Aku mungkin gak bisa selalu di samping kamu secara fisik,  
+tapi hatiku udah otomatis standby di kamu — 24 jam tanpa sinyal lemah 💞  
+
+Jadi, terima kasih udah jadi kamu.  
+Terima kasih udah hadir di hidupku, bikin dunia yang datar jadi warna-warni.  
+Dan terima kasih, karena setiap kali aku berdoa, kamu selalu jadi alasanku buat bersyukur 💌  
+
+Oh iya...  
+Kalau kamu ngerasa langit malam ini cantik, itu karena aku lagi kirim doa kecil buat kamu:  
+semoga kamu selalu bahagia, dan jangan pernah ragu — aku di sini,  
+sayang banget sama kamu 😚✨`;
+
+const messageEl = document.getElementById("message");
+const popup = document.getElementById("popup");
+const secretPopup = document.getElementById("secretPopup");
+const popSound = document.getElementById("popSound");
+let index = 0;
+
+function typeWriter() {
+  if(index < text.length){
+    messageEl.innerHTML += text.charAt(index);
+    messageEl.style.opacity = 1;
+    if(text.charAt(index)!==" " && text.charAt(index)!=="\n"){
+      popSound.currentTime=0;
+      popSound.play().catch(()=>{});
+    }
+    index++;
+
+    // Auto scroll
+    const wrapper = document.getElementById("content-wrapper");
+    wrapper.scrollTop = wrapper.scrollHeight;
+
+    setTimeout(typeWriter,50);
+  }else{
+    setTimeout(()=>popup.classList.add("show"),1500);
+  }
+}
+
+window.onload = typeWriter;
+
+const btnMusic=document.getElementById("playMusic");
+const music=document.getElementById("bgMusic");
+btnMusic.addEventListener("click",()=>{
+  music.play();
+  btnMusic.style.display="none";
+});
+
+const kangenBtn=document.getElementById("kangenBtn");
+kangenBtn.addEventListener("click",()=>{
+  secretPopup.classList.toggle("show");
+  popSound.currentTime=0;
+  popSound.play().catch(()=>{});
+  secretPopup.classList.remove("bounce");
+  void secretPopup.offsetWidth;
+  secretPopup.classList.add("bounce");
+});
+
+setInterval(()=>{
+  kangenBtn.classList.remove("shake");
+  void kangenBtn.offsetWidth;
+  kangenBtn.classList.add("shake");
+},3000);
+
+const body=document.body;
+for(let i=0;i<25;i++){
+  const el=document.createElement("div");
+  el.className=Math.random()>0.5?"heart":"star";
+  el.innerHTML=Math.random()>0.5?"❤":"✨";
+  el.style.left=Math.random()*100+"vw";
+  el.style.fontSize=15+Math.random()*25+"px";
+  el.style.animationDelay=Math.random()*5+"s";
+  body.appendChild(el);
+}
+</script>
+</body>
+</html>
